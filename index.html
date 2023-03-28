@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jokes</title>
+</head>
+<style>
+.box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10%;
+}
+.container {
+  max-width: 400px;
+  padding: 50px 20px;
+  background-color: #fff;
+  box-shadow: rgba(100, 100, 111, 0.2)
+  0px 7px 29px 0px;
+  border-radius: 5px;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn {
+  padding: 10px 20px;
+  margin: 0px 5px;
+  font-size: .99rem;
+  border-radius: 3px;
+  outline: none;
+  border: none;
+  color: #fff;
+  background-color: blue;
+}
+
+h1 {
+  font-size: 1.1rem;
+  color: #888;
+  margin-bottom: 20px;
+}
+
+.btn:hover {
+  cursor: pointer;
+}
+
+.new-joke-btn {
+  background-color: #A240BF;
+}
+
+.joke-text {
+  font-size: 1.3rem;
+  margin-bottom: 30px;
+  font-family: monospace;
+}
+</style>
+<body>
+  <div class="box">
+  <div class='container'>
+    <h1>Try Not to Laugh 😆 </h1>
+    <p class='joke-text'>
+      joke resides here...
+    </p>
+    <div class='button'>
+      <button class='btn new-joke-btn'>New Joke</button>
+    </div>
+    </div>
+  </div>
+    <script>
+      const joketext = document.querySelector('.joke-text');
+      const newjoke = document.querySelector('.new-joke-btn');
+
+      newjoke.addEventListener('click', getjoke);
+      getjoke();
+
+      function getjoke(){
+        const url = "https://icanhazdadjoke.com/";
+         fetch(url, {
+      headers: {
+        'Accept': 'application/json'
+      }
+    }).then(function(res) {return res.json();}).then(function(data) {const joke = data.joke; joketext.innerText = joke;});
+  }
+    </script>
+</body>
+</html>
